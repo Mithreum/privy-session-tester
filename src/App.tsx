@@ -3,7 +3,6 @@ import './App.css';
 import { useHeadlessDelegatedActions, usePrivy } from '@privy-io/react-auth';
 
 interface SessionData {
-  // Define according to Privy’s API response (this is an example)
   sessionId: string;
   expiresAt: string;
   [key: string]: any;
@@ -20,7 +19,7 @@ export default function App() {
   const [code, setCode] = useState("");
 
   const { delegateWallet } = useHeadlessDelegatedActions();
-  const { user, login, logout } = usePrivy();
+  const { user, login, logout, ready } = usePrivy();
 
   console.log("user", user);
 
@@ -36,6 +35,13 @@ export default function App() {
 
   };
 
+  const loginWhenReady = () => {
+    console.log("loginWhenReady", ready);
+    if(ready){
+      login(loginParams);
+    }
+  }
+
 
   return (
     <div className="App" style={{ textAlign: 'center', marginTop: '2rem' }}>
@@ -50,7 +56,7 @@ export default function App() {
       <br></br>
       <br></br>
       <button
-        onClick={() => login(loginParams)}
+        onClick={loginWhenReady}
         style={buttonStyle}
       >
         User Login
