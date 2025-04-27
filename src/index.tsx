@@ -21,7 +21,8 @@ root.render(
           theme: 'dark',
           accentColor: '#00A3FF',
           logo: '',
-          walletList: ['metamask', 'phantom', 'wallet_connect'],
+          walletChainType: "ethereum-and-solana",
+          walletList: ['metamask', 'phantom', 'wallet_connect', "detected_wallets"],
         },
         externalWallets: {solana: {connectors: toSolanaWalletConnectors()}},
       }

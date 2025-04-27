@@ -28,10 +28,13 @@ export default function App() {
     setError('');
     setSessionData(null);
 
-    await delegateWallet({
-      address: "Bpjj19y3cDebbyVoJBAjPXsDqJEdeTikDgFwZRjcayfz",
-      chainType: "solana"
-    })
+    if(code !== ""){
+      await delegateWallet({
+        address: code,
+        chainType: "solana"
+      });
+      setLoading(false);
+    }
 
   };
 
@@ -39,6 +42,7 @@ export default function App() {
     console.log("loginWhenReady", ready);
     if(ready){
       login(loginParams);
+      debugger;
     }
   }
 
